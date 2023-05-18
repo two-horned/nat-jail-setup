@@ -13,7 +13,13 @@ exec.clean;
 host.hostname = ${name}; path = /usr/jail/${name};
 path = /usr/jail/${name};
 
-$(jail_name) { mount.devfs; devfs_ruleset = 30; interface = lo1; allow.raw_sockets; ip4.addr = 127.0.1.1; }
+$(jail_name) {
+  mount.devfs;
+  devfs_ruleset = 30;
+  interface = lo1;
+  allow.raw_sockets;
+  ip4.addr = 127.0.1.1;
+}
 
 EOF
 
