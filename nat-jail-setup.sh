@@ -31,7 +31,10 @@ EOF
 
 cat << EOF >> /etc/rc.conf
 # Jails
-jail_enable="YES" jail_parallel_start=YES jail_list="$(jail_name)"
+jail_enable="YES"
+jail_parallel_start=YES
+jail_list="$(jail_name)"
+
 # Gateway
 gateway_enable="YES" #for ipv4
 ipv6_gateway_enable="YES" #for ipv6
