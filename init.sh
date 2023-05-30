@@ -22,7 +22,7 @@ tar xpf $img
 cd
 
 # Create Snapshot of the base
-zfs snapshot $zfs_base@template
+zfs snapshot $zfs_base_dir@template
 
 # Setting up /etc/jail.conf
 echo "host.hostname=\${name}.$domain;" >> /etc/jail.conf
