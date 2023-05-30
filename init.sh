@@ -5,15 +5,19 @@ domain=$1
 
 zfs_dir="zroot/jails"
 jail_dir="/$zfs_dir"
-zfs_base_dir="$zfs/base"
+zfs_base_dir="$zfs_dir/base"
 base_dir="/$zfs_base_dir"
 
+ver="13.2-RELEASE"
+img="FreeBSD-$ver-base.txz"
+
 # Create Data Pools
-zfs create $zfs
+zfs create $zfs_dir
 zfs create $zfs_base_dir
 
 # Fetch Base System
-fetch https://download.freebsd.org/ftp/releases/amd64/13.2-RELEASE/base.txz -o $base_dir/13.2-RELEASE-base.txz
+fetch https://download.freebsd.org/ftp/releases/amd64/$ver/base.txz -o $base_dir/$img
+tar xpf $img -C $base_dir
 
 # Create Snapshot of the base
 zfs snapshot $zfs_base@template
@@ -42,7 +46,7 @@ sysrc pf_enable="YES"
 
 # Write Firewall
 cat << EOF >> /etc/pf.conf
-netdev="$(netdev_name)"
+netdev="$netdev_name"
 scrub in all fragment reassemble
 set skip on lo0
 set skip on lo1
