@@ -17,7 +17,9 @@ zfs create $zfs_base_dir
 
 # Fetch Base System
 fetch https://download.freebsd.org/ftp/releases/amd64/$ver/base.txz -o $base_dir/$img
-tar xpf $img -C $base_dir
+cd $base_dir
+tar xpf $img
+cd
 
 # Create Snapshot of the base
 zfs snapshot $zfs_base@template
